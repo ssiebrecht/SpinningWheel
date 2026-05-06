@@ -1,6 +1,6 @@
 @namespace SpinningWheel.Components.Atoms
 
-<g class="wheel-pointer" transform="@($"translate(0 {-Radius - 2})")">
+<g class="wheel-pointer" transform="@($"translate({Radius + 2} 0) rotate(90)")">
     <polygon class="wheel-pointer__shape"
              points="-14,-18 14,-18 0,14" />
     <circle class="wheel-pointer__dot" cx="0" cy="-4" r="4" />

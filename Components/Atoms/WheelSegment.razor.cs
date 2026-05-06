@@ -16,9 +16,22 @@ public partial class WheelSegment
 
     private string BuildPath()
     {
+        var sweep = EndAngle - StartAngle;
+
+        // Special case: a single segment spanning the full circle (360°).
+        // SVG arcs with coincident start/end points render nothing, so we
+        // draw two half-circle arcs instead.
+        if (sweep >= 359.99)
+        {
+            var (topX, topY) = Polar(StartAngle, Radius);
+            var (bottomX, bottomY) = Polar(StartAngle + 180, Radius);
+            return string.Create(CultureInfo.InvariantCulture,
+                $"M {topX:F3} {topY:F3} A {Radius:F3} {Radius:F3} 0 1 1 {bottomX:F3} {bottomY:F3} A {Radius:F3} {Radius:F3} 0 1 1 {topX:F3} {topY:F3} Z");
+        }
+
         var (sx, sy) = Polar(StartAngle, Radius);
         var (ex, ey) = Polar(EndAngle, Radius);
-        var largeArc = EndAngle - StartAngle > 180 ? 1 : 0;
+        var largeArc = sweep > 180 ? 1 : 0;
 
         return string.Create(CultureInfo.InvariantCulture,
             $"M 0 0 L {sx:F3} {sy:F3} A {Radius:F3} {Radius:F3} 0 {largeArc} 1 {ex:F3} {ey:F3} Z");

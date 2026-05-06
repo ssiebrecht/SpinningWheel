@@ -20,6 +20,12 @@ public sealed class SpinService : ISpinService
     private const int StopDurationMinMs = 2_000;
     private const int StopDurationMaxMs = 8_000;
 
+    /// <summary>
+    /// The angle (in degrees, clockwise from top) where the pointer/stopper is positioned.
+    /// 0 = top, 90 = right, 180 = bottom, 270 = left.
+    /// </summary>
+    private const double PointerAngleDeg = 90.0;
+
     private readonly Random _random = new();
 
     public SpinPlan Plan(int segmentCount, double currentRotationDeg)
@@ -58,9 +64,9 @@ public sealed class SpinService : ISpinService
         // Angle (clockwise from top) of the winning segment's centre in the wheel's own frame.
         var winnerCentre = (winnerIndex + 0.5) * step;
 
-        // We want (currentRotation + delta) mod 360 == (360 - winnerCentre) mod 360,
-        // so the winner lands under the pointer at the top.
-        var desiredMod = Mod360(360.0 - winnerCentre);
+        // We want (currentRotation + delta) mod 360 == (360 - PointerAngleDeg - winnerCentre) mod 360,
+        // so the winner lands under the pointer at the right.
+        var desiredMod = Mod360(360.0 - PointerAngleDeg - winnerCentre);
         var currentMod = Mod360(currentRotationDeg);
         var delta = desiredMod - currentMod;
         if (delta <= 0)

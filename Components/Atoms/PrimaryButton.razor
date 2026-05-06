@@ -1,0 +1,8 @@
+@namespace SpinningWheel.Components.Atoms
+
+<button type="@Type"
+        class="primary-button @(IsDanger ? "primary-button--danger" : string.Empty)"
+        disabled="@Disabled"
+        @onclick="OnClick">
+    @ChildContent
+</button>

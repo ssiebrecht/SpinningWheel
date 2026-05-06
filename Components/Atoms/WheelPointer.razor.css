@@ -1,0 +1,10 @@
+.wheel-pointer__shape {
+    fill: var(--color-accent);
+    stroke: var(--color-bg);
+    stroke-width: 2;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+}
+
+.wheel-pointer__dot {
+    fill: var(--color-bg);
+}

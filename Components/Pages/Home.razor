@@ -1,0 +1,27 @@
+@page "/"
+@namespace SpinningWheel.Components.Pages
+
+<PageTitle>Spinning Wheel</PageTitle>
+
+<SpinningWheelLayout>
+    <Header>
+        <div class="home__intro">
+            <Heading Level="1">🎡 Spinning Wheel</Heading>
+            <p class="home__subtitle">
+                Namen hinzufügen, Rad drehen, Gewinner auslachen.
+            </p>
+        </div>
+    </Header>
+    <Input>
+        <NameInputForm OnSubmit="HandleAddNameAsync" />
+    </Input>
+    <Wheel>
+        <SpinningWheelView Entries="Store.Entries" OnWinner="HandleWinnerAsync" />
+    </Wheel>
+    <Names>
+        <NameList />
+    </Names>
+</SpinningWheelLayout>
+
+<WinnerOverlay Entry="_winner" Quote="_quote" OnClose="HandleCloseWinnerAsync" />
+<SpotifyWidget />

@@ -1,0 +1,12 @@
+@namespace SpinningWheel.Components.Organisms
+
+@if (Entry is not null)
+{
+    <div class="winner-overlay" role="dialog" aria-modal="true" @onclick="HandleBackdropClick">
+        <div class="winner-overlay__content" @onclick:stopPropagation="true">
+            <WinnerBadge Name="@Entry.Name" />
+            <QuoteCard Quote="@Quote" />
+            <PrimaryButton OnClick="HandleCloseAsync">Schließen</PrimaryButton>
+        </div>
+    </div>
+}

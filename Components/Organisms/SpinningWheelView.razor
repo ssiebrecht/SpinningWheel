@@ -1,0 +1,69 @@
+@namespace SpinningWheel.Components.Organisms
+
+<div class="spinning-wheel">
+    <div class="spinning-wheel__stage @(IsClickable ? "spinning-wheel__stage--clickable" : string.Empty)"
+         @onclick="HandleClickAsync"
+         role="button"
+         tabindex="0"
+         aria-label="Rad drehen"
+         aria-disabled="@((!IsClickable).ToString().ToLowerInvariant())">
+
+        <svg class="spinning-wheel__svg"
+             viewBox="@ViewBox"
+             xmlns="http://www.w3.org/2000/svg">
+
+            <defs>
+                <filter id="wheel-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="6" />
+                    <feOffset dx="0" dy="6" result="offsetblur" />
+                    <feComponentTransfer>
+                        <feFuncA type="linear" slope="0.5" />
+                    </feComponentTransfer>
+                    <feMerge>
+                        <feMergeNode />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+            </defs>
+
+            @if (Entries.Count == 0)
+            {
+                <WheelPlaceholder Radius="Radius" />
+            }
+            else
+            {
+                <g @ref="_rotorRef"
+                   class="spinning-wheel__rotor"
+                   style="@RotorStyle">
+                    @{
+                        var step = 360.0 / Entries.Count;
+                    }
+                    @for (var i = 0; i < Entries.Count; i++)
+                    {
+                        var entry = Entries[i];
+                        var start = i * step;
+                        var end = (i + 1) * step;
+                        <WheelSegment @key="entry.Id"
+                                      StartAngle="start"
+                                      EndAngle="end"
+                                      Radius="Radius"
+                                      Label="@entry.Name"
+                                      ColorToken="@entry.ColorToken" />
+                    }
+                    <circle r="@HubRadius" cx="0" cy="0" class="spinning-wheel__hub" />
+                </g>
+            }
+
+            <WheelPointer Radius="Radius" />
+        </svg>
+
+        @if (CanStartSpin)
+        {
+            <span class="spinning-wheel__hint">Klick zum Drehen</span>
+        }
+        else if (CanStopSpin)
+        {
+            <span class="spinning-wheel__hint spinning-wheel__hint--stop">Klick zum Stoppen</span>
+        }
+    </div>
+</div>

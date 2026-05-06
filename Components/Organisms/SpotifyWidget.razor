@@ -1,0 +1,44 @@
+@namespace SpinningWheel.Components.Organisms
+
+<div class="spotify-widget @(_isOpen ? "spotify-widget--open" : string.Empty)">
+    <button type="button"
+            class="spotify-widget__toggle"
+            aria-label="@(_isOpen ? "Musik-Widget schließen" : "Musik-Widget öffnen")"
+            aria-expanded="@_isOpen"
+            @onclick="HandleToggleAsync">
+        <svg class="spotify-widget__toggle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3z" />
+        </svg>
+    </button>
+
+    @if (_isOpen)
+    {
+        <div class="spotify-widget__panel" role="dialog" aria-label="Musik-Widget">
+            <header class="spotify-widget__header">
+                <h2 class="spotify-widget__title">Musik</h2>
+                <button type="button"
+                        class="spotify-widget__close"
+                        aria-label="Schließen"
+                        @onclick="HandleToggleAsync">×</button>
+            </header>
+
+            <div class="spotify-widget__body">
+                @if (_isConfiguring || string.IsNullOrEmpty(_currentUri))
+                {
+                    <SpotifyUriForm InitialUri="@_currentUri"
+                                    OnSubmit="HandleUriSubmittedAsync"
+                                    OnCancel="@(string.IsNullOrEmpty(_currentUri) ? default : EventCallback.Factory.Create(this, HandleCancelConfigureAsync))" />
+                }
+                else
+                {
+                    <SpotifyEmbed Uri="@_currentUri" />
+                    <button type="button"
+                            class="spotify-widget__change"
+                            @onclick="HandleChangeUriAsync">
+                        Link ändern
+                    </button>
+                }
+            </div>
+        </div>
+    }
+</div>

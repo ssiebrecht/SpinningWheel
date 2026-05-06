@@ -1,0 +1,41 @@
+@keyframes quote-fade-in {
+    from {
+        transform: translateY(8px) scale(0.96);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.quote-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    max-width: 32ch;
+    animation: quote-fade-in 400ms var(--easing-standard) 350ms both;
+}
+
+.quote-card__icon {
+    font-size: var(--font-size-lg);
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+    opacity: 0.85;
+}
+
+.quote-card__text {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    font-style: italic;
+    line-height: 1.45;
+    text-align: left;
+}

@@ -1,0 +1,9 @@
+@namespace SpinningWheel.Components.Molecules
+
+@if (!string.IsNullOrWhiteSpace(Quote))
+{
+    <div class="quote-card" role="note">
+        <span class="quote-card__icon" aria-hidden="true">💀</span>
+        <p class="quote-card__text">@Quote</p>
+    </div>
+}

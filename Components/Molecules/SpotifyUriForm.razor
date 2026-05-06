@@ -1,0 +1,28 @@
+@namespace SpinningWheel.Components.Molecules
+
+<form class="spotify-uri-form" @onsubmit="HandleSubmitAsync" @onsubmit:preventDefault="true">
+    <span class="spotify-uri-form__label">
+        Spotify-Link (Playlist, Track, Album, …)
+    </span>
+    <TextInput Value="@_currentUri"
+               ValueChanged="OnValueChanged"
+               Placeholder="https://open.spotify.com/playlist/..."
+               AriaLabel="Spotify-URL"
+               MaxLength="400"
+               OnEnter="HandleSubmitAsync" />
+    @if (!string.IsNullOrEmpty(_errorMessage))
+    {
+        <p class="spotify-uri-form__error" role="alert">@_errorMessage</p>
+    }
+    <div class="spotify-uri-form__actions">
+        <PrimaryButton Type="submit" Disabled="@(!CanSubmit)">
+            Speichern
+        </PrimaryButton>
+        @if (OnCancel.HasDelegate)
+        {
+            <PrimaryButton Type="button" OnClick="HandleCancelAsync" IsDanger="false">
+                Abbrechen
+            </PrimaryButton>
+        }
+    </div>
+</form>

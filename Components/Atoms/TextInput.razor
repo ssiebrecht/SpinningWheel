@@ -1,0 +1,10 @@
+@namespace SpinningWheel.Components.Atoms
+
+<input type="text"
+       class="text-input"
+       value="@Value"
+       placeholder="@Placeholder"
+       aria-label="@AriaLabel"
+       maxlength="@MaxLength"
+       @oninput="HandleInput"
+       @onkeydown="HandleKeyDownAsync" />

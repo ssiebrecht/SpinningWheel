@@ -1,0 +1,10 @@
+@namespace SpinningWheel.Components.Atoms
+
+<g class="wheel-segment">
+    <path d="@PathData" style="fill: var(@ColorToken);" class="wheel-segment__slice" />
+    <g transform="@LabelTransform">
+        <text class="wheel-segment__label"
+              text-anchor="middle"
+              dominant-baseline="middle">@Label</text>
+    </g>
+</g>

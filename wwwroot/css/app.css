@@ -1,0 +1,68 @@
+/* App-wide fallback styles for error boundary and loading progress. */
+
+#blazor-error-ui {
+    background: var(--color-danger);
+    color: var(--color-primary-contrast);
+    bottom: 0;
+    box-shadow: var(--shadow-md);
+    box-sizing: border-box;
+    display: none;
+    left: 0;
+    padding: var(--space-3) var(--space-5);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: var(--space-3);
+    top: var(--space-2);
+}
+
+.blazor-error-boundary {
+    background: var(--color-danger);
+    color: var(--color-primary-contrast);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+}
+
+.blazor-error-boundary::after {
+    content: "An error has occurred.";
+}
+
+.loading-progress {
+    position: absolute;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    inset: 20vh 0 auto 0;
+    margin: 0 auto;
+}
+
+.loading-progress circle {
+    fill: none;
+    stroke: var(--color-border);
+    stroke-width: 0.6rem;
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
+}
+
+.loading-progress circle:last-child {
+    stroke: var(--color-primary);
+    stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+    transition: stroke-dasharray 0.05s ease-in-out;
+}
+
+.loading-progress-text {
+    position: absolute;
+    text-align: center;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+}
+
+.loading-progress-text:after {
+    content: var(--blazor-load-percentage-text, "Loading");
+}

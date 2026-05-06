@@ -1,0 +1,14 @@
+@namespace SpinningWheel.Components.Atoms
+
+@switch (Level)
+{
+    case 1:
+        <h1 class="heading heading--1">@ChildContent</h1>
+        break;
+    case 2:
+        <h2 class="heading heading--2">@ChildContent</h2>
+        break;
+    default:
+        <h3 class="heading heading--3">@ChildContent</h3>
+        break;
+}

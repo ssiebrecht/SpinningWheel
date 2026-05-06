@@ -1,0 +1,32 @@
+@namespace SpinningWheel.Components.Organisms
+@implements IDisposable
+
+<section class="name-list">
+    <header class="name-list__header">
+        <Heading Level="3">Teilnehmer (@Store.Entries.Count)</Heading>
+        @if (Store.Entries.Count > 0)
+        {
+            <button type="button"
+                    class="name-list__clear"
+                    @onclick="HandleClearAsync">
+                Alle löschen
+            </button>
+        }
+    </header>
+
+    @if (Store.Entries.Count == 0)
+    {
+        <p class="name-list__empty">
+            Noch keine Namen. Füge oben welche hinzu, um das Rad zu befüllen.
+        </p>
+    }
+    else
+    {
+        <ul class="name-list__items">
+            @foreach (var entry in Store.Entries)
+            {
+                <NameListItem @key="entry.Id" Entry="entry" OnRemove="HandleRemoveAsync" />
+            }
+        </ul>
+    }
+</section>

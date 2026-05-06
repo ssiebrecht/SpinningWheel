@@ -1,0 +1,12 @@
+@namespace SpinningWheel.Components.Molecules
+
+<form class="name-input-form" @onsubmit="HandleSubmitAsync" @onsubmit:preventDefault="true">
+    <TextInput Value="@_currentName"
+               ValueChanged="OnValueChanged"
+               Placeholder="Name eingeben..."
+               AriaLabel="Neuer Name"
+               OnEnter="HandleSubmitAsync" />
+    <PrimaryButton Type="submit" Disabled="@(!CanSubmit)">
+        Hinzufügen
+    </PrimaryButton>
+</form>

@@ -1,0 +1,82 @@
+.spinning-wheel-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-6);
+    padding: var(--space-6) var(--space-5);
+    max-width: 1100px;
+    margin: 0 auto;
+    min-height: 100vh;
+    box-sizing: border-box;
+    scroll-padding-top: var(--space-7);
+}
+
+.spinning-wheel-layout__header {
+    width: 100%;
+}
+
+.spinning-wheel-layout__input {
+    width: min(640px, 100%);
+    align-self: center;
+}
+
+.spinning-wheel-layout__wheel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.spinning-wheel-layout__names {
+    width: 100%;
+    max-width: 900px;
+    align-self: center;
+}
+
+/* Tablet: 640px – 1024px */
+@media (max-width: 1024px) {
+    .spinning-wheel-layout {
+        gap: var(--space-5);
+        padding: var(--space-5) var(--space-4);
+    }
+
+    .spinning-wheel-layout__input {
+        width: min(560px, 100%);
+    }
+}
+
+/* Mobile: < 640px — sticky header + fixed bottom input bar */
+@media (max-width: 640px) {
+    .spinning-wheel-layout {
+        gap: var(--space-4);
+        padding: var(--space-3) var(--space-3);
+        /* Reserve space for the fixed bottom input bar so content is not hidden. */
+        padding-bottom: calc(var(--space-8) + env(safe-area-inset-bottom, 0px));
+    }
+
+    .spinning-wheel-layout__header {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        padding: var(--space-2) 0;
+        background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    .spinning-wheel-layout__input {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        width: 100%;
+        align-self: auto;
+        padding: var(--space-3) var(--space-3);
+        padding-bottom: max(var(--space-3), env(safe-area-inset-bottom, 0px));
+        background: var(--color-surface);
+        border-top: 1px solid var(--color-border);
+        box-shadow: var(--shadow-lg);
+        box-sizing: border-box;
+    }
+}

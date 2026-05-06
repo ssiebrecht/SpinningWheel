@@ -1,0 +1,14 @@
+.spotify-embed {
+    width: 100%;
+    min-height: 152px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-surface);
+}
+
+.spotify-embed ::deep iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: var(--radius-md);
+}

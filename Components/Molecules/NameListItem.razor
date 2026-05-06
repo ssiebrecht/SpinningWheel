@@ -1,0 +1,12 @@
+@namespace SpinningWheel.Components.Molecules
+
+<li class="name-list-item"
+    style="@($"--segment-color: var({Entry.ColorToken});")">
+    <span class="name-list-item__name">@Entry.Name</span>
+    <IconButton AriaLabel="@($"{Entry.Name} entfernen")" OnClick="HandleRemoveAsync">
+        <svg width="12" height="12" viewBox="0 0 14 14" aria-hidden="true">
+            <path d="M2 2 L12 12 M12 2 L2 12"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" />
+        </svg>
+    </IconButton>
+</li>

@@ -1,0 +1,22 @@
+.spotify-uri-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.spotify-uri-form__label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.spotify-uri-form__error {
+    margin: 0;
+    color: var(--color-danger);
+    font-size: var(--font-size-sm);
+}
+
+.spotify-uri-form__actions {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
